@@ -48,11 +48,29 @@ DataFrontiers Review Quarterly là một ấn phẩm học thuật trực tuyế
 **Lưu ý quan trọng:** Các script có dependency lẫn nhau, cần chạy đúng thứ tự:
 
 ```bash
+# 1. Tạo schema (bắt buộc)
 mysql -u root -p < 01_schema.sql
+
+# 2. Nạp dữ liệu mẫu (bắt buộc)
 mysql -u root -p < 02_seed_data.sql
+
+# 3. Tạo Views (cần thiết cho Q08)
 mysql -u root -p < 04_views.sql
+
+# 4. Tạo Function và Procedures (cần thiết cho Q08 và các thao tác nghiệp vụ)
 mysql -u root -p < 05_routines.sql
+
+# 5. Tạo Triggers và Event (tự động bảo vệ dữ liệu)
 mysql -u root -p < 06_triggers_events.sql
+
+# 6. Tạo Index và phân tích EXPLAIN (tối ưu hiệu năng)
 mysql -u root -p < 07_indexes_explain.sql
+
+# 7. Chạy 8 truy vấn nghiệp vụ (BẮT BUỘC SAU BƯỚC 3-4)
 mysql -u root -p < 03_queries.sql
+
+# 8. Chạy kiểm thử (tùy chọn, dành cho kiểm tra)
 mysql -u root -p < 09_tests.sql
+
+# 9. (TÙY CHỌN) Thiết lập phân quyền – chỉ chạy khi cần
+mysql -u root -p < 08_admin_backup.sql
